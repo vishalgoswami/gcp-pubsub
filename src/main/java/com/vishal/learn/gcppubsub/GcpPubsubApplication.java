@@ -20,6 +20,7 @@ import org.springframework.messaging.MessageHandler;
 
 @SpringBootApplication
 public class GcpPubsubApplication {
+	private static int __COUNTER;
 	private static final Log LOGGER = LogFactory.getLog
 			(GcpPubsubApplication.class);
 
@@ -64,9 +65,7 @@ public class GcpPubsubApplication {
 
 			LOGGER.info
 					("Message arrived! Payload: " +
-					m.toString() + "/" +
-					m.getHeaders().get(GcpPubSubHeaders.ORDERING_KEY) + "/"+
-					mid+"/"+
+							++__COUNTER + "/" +
 					new String((byte[]) m.getPayload()));
 
 			originalMessage.ack();
